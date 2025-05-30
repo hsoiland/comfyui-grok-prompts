@@ -20,8 +20,8 @@ Fine-tune your prompt craft with LLM intelligence, split, recombine, and visuali
 
 | Model | Image | Video |
 |:-----:|:-----:|:-----:|
-| **PonyXL** | ![Pony](https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/PonyExample.png) | [🎞 PonyVideo.mp4](https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/PonyVideo.mp4) |
-| **Flux**   | ![Flux](https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/FluxExample.png) | [🎞 FluxVideo.mp4](https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/FluxVideo.mp4) |
+| **PonyXL** | ![Pony](https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/PonyExample.png) | <video src="https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/PonyVideo.mp4" autoplay loop muted playsinline width="320"></video> |
+| **Flux** | ![Flux](https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/FluxExample.png) | <video src="https://raw.githubusercontent.com/babydjac/comfyui-grok-prompts/main/media/FluxVideo.mp4" autoplay loop muted playsinline width="320"></video> |
 
 ---
 
@@ -76,17 +76,6 @@ cd comfyui-grok-prompts
 
 ---
 
-## ⚙ Node Setup Example
-
-To install `PonyXL Grok Prompter`:
-
-```bash
-mkdir -p ComfyUI/custom_nodes/grok_prompter_pack
-# Add the node files: ponyxl_grok_prompter.py and flux_grok_prompter.py
-# Add __init__.py with proper NODE_CLASS_MAPPINGS
-```
-
-Or just clone the repo and copy everything inside `custom_nodes/`.
 
 ---
 
