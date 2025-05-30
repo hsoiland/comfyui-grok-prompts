@@ -5,4 +5,4 @@ NODE_CLASS_MAPPINGS = {
     "PonyXL": PonyXL,
     "Flux": Flux
 }
-print("[34mGrok Prompts: [92mLoaded[0m")
+print("\033[34mGrok Prompts: \033[92mLoaded\033[0m")
