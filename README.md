@@ -72,43 +72,62 @@ Additional user assets, great for banners, README visuals, or thumbnails:
 git clone https://github.com/babydjac/comfyui-grok-prompts.git
 cd comfyui-grok-prompts
 # Then move custom_nodes/* to your ComfyUI/custom_nodes/
-⚙ Node Setup Example
-To install PonyXL Grok Prompter:
+```
 
-bash
-Copy
-Edit
+---
+
+## ⚙ Node Setup Example
+
+To install `PonyXL Grok Prompter`:
+
+```bash
 mkdir -p ComfyUI/custom_nodes/grok_prompter_pack
 # Add the node files: ponyxl_grok_prompter.py and flux_grok_prompter.py
 # Add __init__.py with proper NODE_CLASS_MAPPINGS
-Or just clone the repo and copy everything inside custom_nodes/.
+```
 
-🔐 xAI API Required
-To use these nodes, get your Grok API key from x.ai and input it in the node's api_key field.
+Or just clone the repo and copy everything inside `custom_nodes/`.
 
-💬 Example Output
-json
-Copy
-Edit
+---
+
+## 🔐 xAI API Required
+
+To use these nodes, get your Grok API key from [x.ai](https://x.ai/api) and input it in the node's `api_key` field.
+
+---
+
+## 💬 Example Output
+
+```json
 {
   "ponyxl_prompt": "score_9, score_8_up, rating_mature, futanari, blonde_hair, yellow_crop_top, gigantic_breasts, no_pants, no_panties, legs_spread, huge_penis, indoor_bedroom",
   "wan_prompt": "a video of a blonde futanari spreading her legs in a bedroom",
   "explanation": "Combined and cleaned Danbooru tags for clarity, emphasis, and aesthetic scoring. Generated concise video scene prompt from subject + motion."
 }
-🚀 Use Case
-Generate highly-optimized, anime-styled render prompts (PonyXL)
+```
 
-Build surreal abstract visuals (Flux)
+---
 
-Animate scenes with natural language storytelling (Wan)
+## 🚀 Use Case
 
-Perfect for NSFW creators, experimental artists, or prompt engineers
+- Generate highly-optimized, anime-styled render prompts (PonyXL)
+- Build surreal abstract visuals (Flux)
+- Animate scenes with natural language storytelling (Wan)
+- Perfect for NSFW creators, experimental artists, or prompt engineers
 
-💡 Inspiration
-Born from the need to bridge prompting with LLM intuition, this project was sparked by curiosity, refined by obsession, and powered by Grok.
+---
 
-🫡 Credits
-Brought to you by @babydjac
-Powered by: ComfyUI & xAI's Grok
+## 💡 Inspiration
 
-Prompt smarter. Generate harder.
+Born from the need to **bridge prompting with LLM intuition**, this project was sparked by curiosity, refined by obsession, and powered by Grok.
+
+---
+
+## 🫡 Credits
+
+Brought to you by [@babydjac](https://github.com/babydjac)  
+Powered by: [ComfyUI](https://github.com/comfyanonymous/ComfyUI) & [xAI's Grok](https://x.ai/)
+
+---
+
+**Prompt smarter. Generate harder.**
