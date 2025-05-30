@@ -11,29 +11,30 @@ class Flux:
             "required": {
                 "prompt": ("STRING", {"default": "", "multiline": True}),
                 "api_key": ("STRING", {"default": ""}),
+                "motion_type": ("STRING", {"default": "hair swaying slightly"}),
             }
         }
 
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("flux_prompt", "wan_prompt")
+    RETURN_TYPES = ("STRING", "STRING", "STRING")
+    RETURN_NAMES = ("flux_prompt", "wan_prompt", "negative_prompt")
     FUNCTION = "generate_prompts"
     CATEGORY = "GrokPrompts"
     OUTPUT_NODE = True
 
-    def generate_prompts(self, prompt, api_key):
+    def generate_prompts(self, prompt, api_key, motion_type):
         if not api_key:
-            return {"ui": {"text": ["No API key provided."]}, "result": (prompt, "")}
+            return {"ui": {"text": ["No API key provided."]}, "result": (prompt, "", "blurry, low_detail, bad_anatomy")}
         try:
             headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
             data = {
                 "messages": [
                     {
                         "role": "system",
-                        "content": "You are an expert in crafting streamlined prompts for Flux and Wan video generation. For Flux, create a concise prompt optimized for Flux's style, using descriptive tags focused on subject, scene, and style (e.g., blonde hair, futuristic bedroom, photorealistic), avoiding Danbooru-specific tags like score_9, and emphasizing natural language clarity for high-quality output. For Wan, create a short video prompt starting with 'a video of' followed by the subject and their action, avoiding extra details like camera or style. Provide a brief explanation of the optimization. Return a JSON object with 'flux_prompt', 'wan_prompt', and 'explanation' keys."
+                        "content": f"You are an expert in crafting streamlined prompts for Flux and Wan video generation. For Flux, create a concise prompt optimized for Flux's style, using descriptive natural language tags focused on subject, scene, and style (e.g., blonde hair, cozy bedroom, photorealistic), avoiding Danbooru-specific tags like score_9, and emphasizing clarity for high-quality output. For Wan, create a short video prompt starting with 'a video of' with the subject, their primary action, and a user-defined visual motion ('{motion_type}'). Also, provide a negative prompt for Flux (e.g., blurry, low_detail, bad_anatomy). Provide a brief explanation of the optimization. Return a JSON object with 'flux_prompt', 'wan_prompt', 'negative_prompt', and 'explanation' keys."
                     },
                     {
                         "role": "user",
-                        "content": f"Generate a streamlined Flux prompt and a Wan video prompt for: {prompt}"
+                        "content": f"Generate a streamlined Flux prompt, a Wan video prompt, and a negative prompt for: {prompt}"
                     }
                 ],
                 "model": "grok-3-latest",
@@ -46,10 +47,10 @@ class Flux:
             result_dict = json.loads(result)
             flux_prompt = result_dict.get("flux_prompt", prompt)
             wan_prompt = result_dict.get("wan_prompt", "")
-            explanation = result_dict.get("explanation", "Prompts streamlined for Flux and Wan.")
-            return {"ui": {"text": [explanation]}, "result": (flux_prompt, wan_prompt)}
+            negative_prompt = result_dict.get("negative_prompt", "blurry, low_detail, bad_anatomy")
+            explanation = result_dict.get("explanation", "Prompts streamlined for Flux and Wan with custom motion.")
+            return {"ui": {"text": [explanation]}, "result": (flux_prompt, wan_prompt, negative_prompt)}
         except Exception as e:
             error_msg = f"Error calling Grok API: {e}"
             print(error_msg)
-            return {"ui": {"text": [error_msg]}, "result": (prompt, "")}
-
+            return {"ui": {"text": [error_msg]}, "result": (prompt, "", "blurry, low_detail, bad_anatomy")}
