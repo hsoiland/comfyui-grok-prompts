@@ -1,0 +1,15 @@
+[project]
+name = "grok-prompts"
+description = "A ComfyUI node pack for generating optimized PonyXL and Flux prompts using Grok API"
+version = "1.0.0"
+license = { file = "LICENSE.txt" }
+dependencies = ["requests==2.32.3"]
+
+[project.urls]
+Repository = "https://github.com/yourusername/grok-prompts"
+
+[tool.comfy]
+PublisherId = "yourpublisherid"
+DisplayName = "Grok Prompts"
+Icon = "https://example.com/icon.png"
+
