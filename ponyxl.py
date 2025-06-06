@@ -30,7 +30,7 @@ class PonyXL:
 
     def generate_prompts(self, prompt, api_key, motion_type):
         if not api_key:
-            return {"ui": {"text": ["No API key provided."]}, "result": (prompt, "", "blurry, low_quality, bad_anatomy, oversaturated")}
+            return (prompt, "", "blurry, low_quality, bad_anatomy, oversaturated"), {"ui": {"text": ["No API key provided."]}}
         try:
             headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
             data = {
@@ -60,8 +60,8 @@ class PonyXL:
             wan_prompt = result_dict.get("wan_prompt", "")
             negative_prompt = result_dict.get("negative_prompt", "blurry, low_quality, bad_anatomy, oversaturated")
             explanation = result_dict.get("explanation", "Prompts optimized with detailed Danbooru tags for PonyXL and custom Wan motion.")
-            return {"ui": {"text": [explanation]}, "result": (ponyxl_prompt, wan_prompt, negative_prompt)}
+            return (ponyxl_prompt, wan_prompt, negative_prompt), {"ui": {"text": [explanation]}}
         except Exception as e:
             error_msg = f"Error calling Grok API: {e}"
             print(error_msg)
-            return {"ui": {"text": [error_msg]}, "result": (prompt, "", "blurry, low_quality, bad_anatomy, oversaturated")}
+            return (prompt, "", "blurry, low_quality, bad_anatomy, oversaturated"), {"ui": {"text": [error_msg]}}
