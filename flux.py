@@ -23,7 +23,7 @@ class Flux:
 
     def generate_prompts(self, prompt, api_key, motion_type):
         if not api_key:
-            return {"ui": {"text": ["No API key provided."]}, "result": (prompt, "", "blurry, low_detail, bad_anatomy")}
+            return (prompt, "", "blurry, low_detail, bad_anatomy"), {"ui": {"text": ["No API key provided."]}}
         try:
             headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
             data = {
@@ -49,8 +49,8 @@ class Flux:
             wan_prompt = result_dict.get("wan_prompt", "")
             negative_prompt = result_dict.get("negative_prompt", "blurry, low_detail, bad_anatomy")
             explanation = result_dict.get("explanation", "Prompts streamlined for Flux and Wan with custom motion.")
-            return {"ui": {"text": [explanation]}, "result": (flux_prompt, wan_prompt, negative_prompt)}
+            return (flux_prompt, wan_prompt, negative_prompt), {"ui": {"text": [explanation]}}
         except Exception as e:
             error_msg = f"Error calling Grok API: {e}"
             print(error_msg)
-            return {"ui": {"text": [error_msg]}, "result": (prompt, "", "blurry, low_detail, bad_anatomy")}
+            return (prompt, "", "blurry, low_detail, bad_anatomy"), {"ui": {"text": [error_msg]}}
