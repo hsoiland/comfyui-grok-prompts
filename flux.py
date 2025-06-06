@@ -1,16 +1,9 @@
 import requests
 import json
-import re
 
 class Flux:
     def __init__(self):
         pass
-
-    @staticmethod
-    def _extract_json(text: str) -> str:
-        """Return the first JSON object found in the text."""
-        match = re.search(r"{.*}", text, re.DOTALL)
-        return match.group(0) if match else "{}"
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -30,7 +23,7 @@ class Flux:
 
     def generate_prompts(self, prompt, api_key, motion_type):
         if not api_key:
-            return (prompt, "", "blurry, low_detail, bad_anatomy"), {"ui": {"text": ["No API key provided."]}}
+            return {"ui": {"text": ["No API key provided."]}, "result": (prompt, "", "blurry, low_detail, bad_anatomy")}
         try:
             headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
             data = {
@@ -51,17 +44,13 @@ class Flux:
             response = requests.post("https://api.x.ai/v1/chat/completions", json=data, headers=headers)
             response.raise_for_status()
             result = response.json().get("choices", [{}])[0].get("message", {}).get("content", "{}")
-            clean_json = self._extract_json(result)
-            try:
-                result_dict = json.loads(clean_json)
-            except json.JSONDecodeError as e:
-                raise ValueError(f"Invalid JSON returned: {clean_json}") from e
+            result_dict = json.loads(result)
             flux_prompt = result_dict.get("flux_prompt", prompt)
             wan_prompt = result_dict.get("wan_prompt", "")
             negative_prompt = result_dict.get("negative_prompt", "blurry, low_detail, bad_anatomy")
             explanation = result_dict.get("explanation", "Prompts streamlined for Flux and Wan with custom motion.")
-            return (flux_prompt, wan_prompt, negative_prompt), {"ui": {"text": [explanation]}}
+            return {"ui": {"text": [explanation]}, "result": (flux_prompt, wan_prompt, negative_prompt)}
         except Exception as e:
             error_msg = f"Error calling Grok API: {e}"
             print(error_msg)
-            return (prompt, "", "blurry, low_detail, bad_anatomy"), {"ui": {"text": [error_msg]}}
+            return {"ui": {"text": [error_msg]}, "result": (prompt, "", "blurry, low_detail, bad_anatomy")}
