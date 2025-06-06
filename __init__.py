@@ -1,5 +1,9 @@
-from .ponyxl import PonyXL
-from .flux import Flux
+if __package__:
+    from .ponyxl import PonyXL
+    from .flux import Flux
+else:
+    from ponyxl import PonyXL
+    from flux import Flux
 
 NODE_CLASS_MAPPINGS = {
     "PonyXL": PonyXL,
