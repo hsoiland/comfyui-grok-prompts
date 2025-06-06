@@ -6,7 +6,7 @@ license = { file = "LICENSE.txt" }
 dependencies = ["requests==2.32.3"]
 
 [project.urls]
-Repository = "https://github.com/yourusername/comfyui-grok-prompts"
+Repository = "https://github.com/babydjac/comfyui-grok-prompts"
 
 [tool.comfy]
 PublisherId = "yourpublisherid"
