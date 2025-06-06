@@ -81,7 +81,7 @@ To use these nodes, you’ll need an API key from [x.ai](https://x.ai/api). Inpu
 
 - Perfect for NSFW image prompting using PonyXL
 - Abstract stylized generation with Flux
-- Natural-language video scene building for WAN
+- Natural-language video scene building for Wan
 - Ideal for artists, animators, and prompt engineers wanting more automation and precision
 
 ---
