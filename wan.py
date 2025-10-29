@@ -118,7 +118,7 @@ I will now provide the prompt for you to rewrite. Please directly expand and rew
             
             data = {
                 "messages": messages,
-                "model": "grok-3-latest",
+                "model": "grok-4-latest",
                 "stream": False,
                 "temperature": 0.7
             }
