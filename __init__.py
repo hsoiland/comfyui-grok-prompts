@@ -6,6 +6,7 @@ else:
     from ponyxl import PonyXL
     from flux import Flux
     from wan import Wan
+
 NODE_CLASS_MAPPINGS = {
     "PonyXL": PonyXL,
     "Flux": Flux,
