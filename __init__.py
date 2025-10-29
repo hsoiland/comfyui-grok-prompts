@@ -2,6 +2,7 @@ if __package__:
     from .ponyxl import PonyXL
     from .flux import Flux
     from .wan import Wan
+    from .audio import Audio
 else:
     from ponyxl import PonyXL
     from flux import Flux
